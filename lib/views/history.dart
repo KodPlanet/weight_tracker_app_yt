@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:weight_tracker_app_yt/models/record.dart';
 import 'package:weight_tracker_app_yt/view-models/controller.dart';
 import 'package:weight_tracker_app_yt/widgets/record_list_tile.dart';
 import 'package:get/get.dart';
@@ -13,32 +14,30 @@ class HistoryScreen extends StatefulWidget {
 class _HistoryScreenState extends State<HistoryScreen> {
   final Controller _controller = Get.put(Controller());
 
-
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          title: Text("History"),
-          actions: [IconButton(onPressed: _controller.addRecord, icon: Icon(Icons.add))],
-        ),
-        body: Obx(()=>ListView(
-            physics: BouncingScrollPhysics(),
+    List<Record> records = _controller.records;
 
-            children: [
-
-              Text(_controller.records[0].note!),
-              Text(_controller.records[1].note!),
-              Text(_controller.records[2].note!),
-              Text(_controller.records[3].note!),
-              Text('Listede ${_controller.records.length} eleman var'),
-              Text(_controller.records.last.note!),
-
-
-
-            ])),
-
-    );
+    return Obx(() => Scaffold(
+          appBar: AppBar(
+            centerTitle: true,
+            title: Text("History"),
+            actions: [
+              IconButton(
+                  onPressed: _controller.addRecord, icon: Icon(Icons.add))
+            ],
+          ),
+          body: records.isEmpty
+              ? Center(
+                  child: Container(
+                    child: Text('Please Add Some Records'),
+                  ),
+                )
+              : ListView(
+                  physics: BouncingScrollPhysics(),
+                  children: records
+                      .map((record) => RecordListTile(record: record))
+                      .toList()),
+        ));
   }
 }
