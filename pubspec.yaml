@@ -31,6 +31,8 @@ dependencies:
   get: ^4.3.4
   animated_bottom_navigation_bar: ^0.3.2
   intl: ^0.17.0
+  numberpicker: ^2.1.1
+  font_awesome_flutter: ^9.1.0
 
 dev_dependencies:
   flutter_test:

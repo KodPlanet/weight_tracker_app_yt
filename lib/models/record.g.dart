@@ -6,6 +6,7 @@ part of 'record.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
+// ignore: non_constant_identifier_names
 _$_Record _$_$_RecordFromJson(Map<String, dynamic> json) {
   return _$_Record(
     dateTime: DateTime.parse(json['dateTime'] as String),
@@ -15,6 +16,7 @@ _$_Record _$_$_RecordFromJson(Map<String, dynamic> json) {
   );
 }
 
+// ignore: non_constant_identifier_names
 Map<String, dynamic> _$_$_RecordToJson(_$_Record instance) => <String, dynamic>{
       'dateTime': instance.dateTime.toIso8601String(),
       'weight': instance.weight,
